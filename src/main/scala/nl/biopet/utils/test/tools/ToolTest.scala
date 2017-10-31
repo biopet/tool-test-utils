@@ -9,9 +9,10 @@ trait ToolTest[T] extends BiopetTest {
 
   @Test
   def testArgs(): Unit = {
+
     for (option <- toolCommand.argsParser.optionsForRender){
       option.desc should not be empty
-      option.desc.length() should be > 5
-      option.desc should not contain regex "\\bbla\\b"
+      option.desc.length() should be > 10
+    }
   }
-}}
+}
