@@ -23,7 +23,9 @@ scalaVersion := "2.11.11"
 resolvers += Resolver.sonatypeRepo("snapshots")
 
 libraryDependencies += "com.github.scopt" %% "scopt" % "3.7.0"
-libraryDependencies += "com.github.biopet" %% "test-utils" % "0.1" % Test
+libraryDependencies += "com.github.biopet" %% "test-utils" % "0.1"
+libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.2-SNAPSHOT" changing()
+
 
 useGpg := true
 
