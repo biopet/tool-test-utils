@@ -32,7 +32,7 @@ class ToolTestTest extends BiopetTest {
     val noDescriptionTest = new NoDescriptionOption()
     intercept[TestFailedException] {
       noDescriptionTest.testArgs()
-    }.getMessage shouldBe "\"\" was empty"
+    }.getMessage shouldBe "'--num' description: \"\" was empty"
   }
 
   @Test
@@ -48,7 +48,7 @@ class ToolTestTest extends BiopetTest {
     val shortDescriptionTest = new ShortDescriptionOption()
     intercept[TestFailedException] {
       shortDescriptionTest.testArgs()
-    }.getMessage shouldBe "7 was not greater than 10"
+    }.getMessage shouldBe "'--num' description: 7 was not greater than 10"
   }
 
   @Test
