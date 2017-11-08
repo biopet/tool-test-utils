@@ -10,7 +10,7 @@ trait ToolTest[T] extends BiopetTest {
   @Test
   def testArgs(): Unit = {
 
-    for (option <- toolCommand.argsParser.optionsForRender){
+    for (option <- toolCommand.argsParser.optionsForRender) {
       withClue(s"'${option.fullName}' description: ") {
         option.desc should not be empty
         option.desc.length() should be > 10
