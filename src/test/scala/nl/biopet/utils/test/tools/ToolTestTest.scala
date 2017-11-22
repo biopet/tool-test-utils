@@ -111,7 +111,7 @@ class ToolTestTest extends BiopetTest {
     val shortDescriptionTest = new ShortDescriptionText()
     intercept[TestFailedException] {
       shortDescriptionTest.testDocs()
-    }.getMessage shouldBe "3 was not greater than or equal to 25"
+    }.getMessage shouldBe "Description too short: 3 was not greater than or equal to 25"
   }
 
   @Test
@@ -133,7 +133,7 @@ class ToolTestTest extends BiopetTest {
     val longDescriptionTest = new LongDescriptionText()
     intercept[TestFailedException] {
       longDescriptionTest.testDocs()
-    }.getMessage shouldBe "681 was not less than or equal to 250"
+    }.getMessage shouldBe "Description too long: 681 was not less than or equal to 250"
   }
 
   @Test
@@ -155,7 +155,7 @@ class ToolTestTest extends BiopetTest {
     val shortManualTest = new ShortManualText()
     intercept[TestFailedException] {
       shortManualTest.testDocs()
-    }.getMessage shouldBe "3 was not greater than or equal to 25"
+    }.getMessage shouldBe "Manual too short: 3 was not greater than or equal to 25"
   }
 
   @Test
@@ -177,7 +177,7 @@ class ToolTestTest extends BiopetTest {
     val shortExampleTest = new ShortExampleText()
     intercept[TestFailedException] {
       shortExampleTest.testDocs()
-    }.getMessage shouldBe "3 was not greater than or equal to 25"
+    }.getMessage shouldBe "Example too short: 3 was not greater than or equal to 25"
   }
 }
 
