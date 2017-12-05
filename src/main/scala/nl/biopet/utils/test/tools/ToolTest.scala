@@ -33,7 +33,7 @@ trait ToolTest[T] extends BiopetTest {
     withClue("Manual too short: ") {
       manualWords should be >= 25
     }
-    withClue("Example too short: "){
+    withClue("Example too short: ") {
       exampleWords should be >= 25
     }
   }
