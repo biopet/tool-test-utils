@@ -25,7 +25,7 @@ resolvers += Resolver.sonatypeRepo("releases")
 
 libraryDependencies += "com.github.scopt" %% "scopt" % "3.7.0"
 libraryDependencies += "com.github.biopet" %% "test-utils" % "0.2"
-libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.2-SNAPSHOT" changing()
+libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.2"
 
 useGpg := true
 
