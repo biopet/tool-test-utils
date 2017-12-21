@@ -51,6 +51,4 @@ trait ToolTest[T] extends BiopetTest {
     }
   }
 
-
-
 }
