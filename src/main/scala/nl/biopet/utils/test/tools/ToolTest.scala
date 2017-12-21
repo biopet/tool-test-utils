@@ -7,6 +7,30 @@ import org.testng.annotations.Test
 trait ToolTest[T] extends BiopetTest {
   def toolCommand: ToolCommand[T]
 
+  /**
+    * This function sets the minimal amount of words that should be in the tool description
+    * @return the amount of words: Int
+    */
+  def minDescriptionWords: Int = 25
+
+  /**
+    * This function sets the maximal amount of words that should be in the tool description
+    * @return the amount of words: Int
+    */
+  def maxDescriptionWords: Int = 250
+
+  /**
+    * This function sets the minimal amount of words that should be in the tool manual
+    * @return the amount of words: Int
+    */
+  def minManualWords: Int = 25
+
+  /**
+    * This function sets the minimal amount of words that should be in the tool example
+    * @return the amount of words: Int
+    */
+  def minExampleWords: Int = 25
+
   @Test
   def testArgs(): Unit = {
 
@@ -19,22 +43,30 @@ trait ToolTest[T] extends BiopetTest {
   }
 
   @Test
-  def testDocs(): Unit = {
-    val descriptionWords = toolCommand.descriptionText.split("\\s+").length
-    val manualWords = toolCommand.manualText.split("\\s+").length
+  def testExample(): Unit = {
     val exampleWords = toolCommand.exampleText.split("\\s+").length
 
+    withClue("Example too short: ") {
+      exampleWords should be >= minExampleWords
+    }
+  }
+
+  @Test
+  def testDescription(): Unit = {
+    val descriptionWords = toolCommand.descriptionText.split("\\s+").length
     withClue("Description too short: ") {
-      descriptionWords should be >= 25
+      descriptionWords should be >= minDescriptionWords
     }
     withClue("Description too long: ") {
-      descriptionWords should be <= 250
+      descriptionWords should be <= maxDescriptionWords
     }
+  }
+
+  @Test
+  def testManual(): Unit = {
+    val manualWords = toolCommand.manualText.split("\\s+").length
     withClue("Manual too short: ") {
-      manualWords should be >= 25
-    }
-    withClue("Example too short: ") {
-      exampleWords should be >= 25
+      manualWords should be >= minManualWords
     }
   }
 
