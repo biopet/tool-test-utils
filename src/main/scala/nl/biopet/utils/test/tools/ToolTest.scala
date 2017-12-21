@@ -7,9 +7,28 @@ import org.testng.annotations.Test
 trait ToolTest[T] extends BiopetTest {
   def toolCommand: ToolCommand[T]
 
+  /**
+    * This function sets the minimal amount of words that should be in the tool description
+    * @return the amount of words: Int
+    */
   def minDescriptionWords: Int = 25
+
+  /**
+    * This function sets the maximal amount of words that should be in the tool description
+    * @return the amount of words: Int
+    */
   def maxDescriptionWords: Int = 250
+
+  /**
+    * This function sets the minimal amount of words that should be in the tool manual
+    * @return the amount of words: Int
+    */
   def minManualWords: Int = 25
+
+  /**
+    * This function sets the minimal amount of words that should be in the tool example
+    * @return the amount of words: Int
+    */
   def minExampleWords: Int = 25
 
   @Test
