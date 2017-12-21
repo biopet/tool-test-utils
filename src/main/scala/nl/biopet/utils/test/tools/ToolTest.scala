@@ -44,7 +44,7 @@ trait ToolTest[T] extends BiopetTest {
   }
 
   @Test
-  def testManual: Unit = {
+  def testManual(): Unit = {
     val manualWords = toolCommand.manualText.split("\\s+").length
     withClue("Manual too short: ") {
       manualWords should be >= minManualWords

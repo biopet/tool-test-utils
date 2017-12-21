@@ -88,7 +88,9 @@ class ToolTestTest extends BiopetTest {
 
       val validToolTest = new ValidOption()
       validToolTest.testArgs()
-      validToolTest.testDocs()
+      validToolTest.testManual()
+      validToolTest.testExample()
+      validToolTest.testDescription()
     }
   }
 
@@ -110,7 +112,7 @@ class ToolTestTest extends BiopetTest {
     }
     val shortDescriptionTest = new ShortDescriptionText()
     intercept[TestFailedException] {
-      shortDescriptionTest.testDocs()
+      shortDescriptionTest.testDescription()
     }.getMessage shouldBe "Description too short: 3 was not greater than or equal to 25"
   }
 
@@ -132,7 +134,7 @@ class ToolTestTest extends BiopetTest {
     }
     val longDescriptionTest = new LongDescriptionText()
     intercept[TestFailedException] {
-      longDescriptionTest.testDocs()
+      longDescriptionTest.testDescription()
     }.getMessage shouldBe "Description too long: 681 was not less than or equal to 250"
   }
 
@@ -154,7 +156,7 @@ class ToolTestTest extends BiopetTest {
     }
     val shortManualTest = new ShortManualText()
     intercept[TestFailedException] {
-      shortManualTest.testDocs()
+      shortManualTest.testManual
     }.getMessage shouldBe "Manual too short: 3 was not greater than or equal to 25"
   }
 
@@ -176,8 +178,35 @@ class ToolTestTest extends BiopetTest {
     }
     val shortExampleTest = new ShortExampleText()
     intercept[TestFailedException] {
-      shortExampleTest.testDocs()
+      shortExampleTest.testExample()
     }.getMessage shouldBe "Example too short: 3 was not greater than or equal to 25"
   }
+
+  @Test
+  def overrideTextTooShort(): Unit = {
+    class ShortDocumentation() extends ToolTest[Args] {
+      override def minManualWords = 3
+      override def minExampleWords = 3
+      override def minDescriptionWords = 3
+      def toolCommand: ToolCommand[Args] = new TestTool {
+        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
+          opt[Int]('n', "num") text "This is a numeric value" action { (x, c) => c.copy(num = x) }
+        }
+
+
+        def descriptionText: String = "Way too short."
+
+        def manualText: String = "Way too short."
+
+        def exampleText: String = "Way too short."
+      }
+    }
+    val overrideShortDocumentationTest = new ShortDocumentation()
+
+    overrideShortDocumentationTest.testManual()
+    overrideShortDocumentationTest.testExample()
+    overrideShortDocumentationTest.testDescription()
+  }
+
 }
 
