@@ -156,7 +156,7 @@ class ToolTestTest extends BiopetTest {
     }
     val shortManualTest = new ShortManualText()
     intercept[TestFailedException] {
-      shortManualTest.testManual
+      shortManualTest.testManual()
     }.getMessage shouldBe "Manual too short: 3 was not greater than or equal to 25"
   }
 
