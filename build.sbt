@@ -1,5 +1,5 @@
 organization := "com.github.biopet"
-name := "ToolTestUtils"
+name := "tool-test-utils"
 
 biopetUrlName := "tool-test-utils"
 
