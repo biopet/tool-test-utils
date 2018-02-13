@@ -1,11 +1,11 @@
 language: scala
-
 scala:
   - 2.11.11
-
 script:
-  - sbt clean coverage test coverageReport &&
-    sbt coverageAggregate
+  - "set -o pipefail && sbt clean evicted scalafmt coverage test coverageReport coverageAggregate coveralls | tee sbt.log"
+  - |
+    n=`grep -ce "\* com.github.biopet" sbt.log`
+    if [ "$n" -ne "0" ]; then echo "ERROR: Found conflicting dependencies inside biopet"; exit 1; fi
+  - "git diff --exit-code || (echo ERROR: Git changes detected, please regenerate the readme and run scalafmt with: sbt generateReadme scalafmt && exit 1)"
 after_success:
-  - sbt coveralls
   - bash <(curl -s https://codecov.io/bash)
