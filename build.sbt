@@ -4,6 +4,8 @@ name := "tool-test-utils"
 
 biopetUrlName := "tool-test-utils"
 
+startYear := Some(2014)
+
 biopetIsTool := false
 
 developers += Developer(id="ffinfo", name="Peter van 't Hof", email="pjrvanthof@gmail.com", url=url("https://github.com/ffinfo"))
