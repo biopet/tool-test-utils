@@ -2,7 +2,7 @@ organization := "com.github.biopet"
 organizationName := "Biopet"
 name := "tool-test-utils"
 
-biopetUrlName := "tool-test-utils"
+biopetUrlName := "tool-test-utildep s"
 
 startYear := Some(2014)
 
@@ -17,7 +17,7 @@ developers += Developer(id = "rhpvorderman",
                         email = "r.h.p.vorderman@lumc.nl",
                         url = url("https://github.com/rhpvorderman"))
 
-scalaVersion := "2.11.11"
+scalaVersion := "2.11.12"
 
 libraryDependencies += "com.github.biopet" %% "test-utils" % "0.3"
 libraryDependencies += "com.github.biopet" %% "tool-utils" % "0.3"

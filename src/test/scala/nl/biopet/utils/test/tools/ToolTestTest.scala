@@ -31,9 +31,12 @@ class ToolTestTest extends BiopetTest {
   def noDescriptionOption(): Unit = {
     class NoDescriptionOption extends ToolTest[Args] {
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") action { (x, c) => c.copy(num = x) }
-        }
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") action { (x, c) =>
+              c.copy(num = x)
+            }
+          }
         def descriptionText: String = loremIpsum
         def manualText: String = loremIpsum
         def exampleText: String = loremIpsum
@@ -50,9 +53,12 @@ class ToolTestTest extends BiopetTest {
   def shortDescriptionOption(): Unit = {
     class ShortDescriptionOption() extends ToolTest[Args] {
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") text "Bla bla" action { (x, c) => c.copy(num = x) }
-        }
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") text "Bla bla" action { (x, c) =>
+              c.copy(num = x)
+            }
+          }
         def descriptionText: String = loremIpsum
         def manualText: String = loremIpsum
         def exampleText: String = loremIpsum
@@ -69,18 +75,22 @@ class ToolTestTest extends BiopetTest {
   def validTool(): Unit = {
     class ValidOption() extends ToolTest[Args] {
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") text "This is a numeric value" action { (x, c) => c.copy(num = x) }
-          opt[File]('I', "inputFile") required() maxOccurs 1 valueName "<file>" action {
-            (x, c) =>
-              c.copy(inputFile = x.getAbsoluteFile)
-          } validate { x =>
-            if (x.exists) success else failure("Input required")
-          } text "Input file (required)"
-          opt[Unit]("someBoolean") unbounded() action { (_, c) =>
-            c.copy(someBoolean = true)
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") text "This is a numeric value" action {
+              (x, c) =>
+                c.copy(num = x)
+            }
+            opt[File]('I', "inputFile") required () maxOccurs 1 valueName "<file>" action {
+              (x, c) =>
+                c.copy(inputFile = x.getAbsoluteFile)
+            } validate { x =>
+              if (x.exists) success else failure("Input required")
+            } text "Input file (required)"
+            opt[Unit]("someBoolean") unbounded () action { (_, c) =>
+              c.copy(someBoolean = true)
+            }
           }
-        }
         def descriptionText: String = loremIpsum
         def manualText: String = loremIpsum
         def exampleText: String = loremIpsum
@@ -98,10 +108,13 @@ class ToolTestTest extends BiopetTest {
   def descriptionTextTooShort(): Unit = {
     class ShortDescriptionText() extends ToolTest[Args] {
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") text "This is a numeric value" action { (x, c) => c.copy(num = x) }
-        }
-
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") text "This is a numeric value" action {
+              (x, c) =>
+                c.copy(num = x)
+            }
+          }
 
         def descriptionText = "Way too short."
 
@@ -120,10 +133,13 @@ class ToolTestTest extends BiopetTest {
   def descriptionTextTooLong(): Unit = {
     class LongDescriptionText() extends ToolTest[Args] {
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") text "This is a numeric value" action { (x, c) => c.copy(num = x) }
-        }
-
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") text "This is a numeric value" action {
+              (x, c) =>
+                c.copy(num = x)
+            }
+          }
 
         def descriptionText: String = loremIpsum * 10
 
@@ -142,10 +158,13 @@ class ToolTestTest extends BiopetTest {
   def manualTextTooShort(): Unit = {
     class ShortManualText() extends ToolTest[Args] {
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") text "This is a numeric value" action { (x, c) => c.copy(num = x) }
-        }
-
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") text "This is a numeric value" action {
+              (x, c) =>
+                c.copy(num = x)
+            }
+          }
 
         def descriptionText: String = loremIpsum
 
@@ -164,10 +183,13 @@ class ToolTestTest extends BiopetTest {
   def exampleTextTooShort(): Unit = {
     class ShortExampleText() extends ToolTest[Args] {
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") text "This is a numeric value" action { (x, c) => c.copy(num = x) }
-        }
-
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") text "This is a numeric value" action {
+              (x, c) =>
+                c.copy(num = x)
+            }
+          }
 
         def descriptionText: String = loremIpsum
 
@@ -189,10 +211,13 @@ class ToolTestTest extends BiopetTest {
       override def minExampleWords = 3
       override def minDescriptionWords = 3
       def toolCommand: ToolCommand[Args] = new TestTool {
-        def argsParser: AbstractOptParser[Args] = new AbstractOptParser[Args](this) {
-          opt[Int]('n', "num") text "This is a numeric value" action { (x, c) => c.copy(num = x) }
-        }
-
+        def argsParser: AbstractOptParser[Args] =
+          new AbstractOptParser[Args](this) {
+            opt[Int]('n', "num") text "This is a numeric value" action {
+              (x, c) =>
+                c.copy(num = x)
+            }
+          }
 
         def descriptionText: String = "Way too short."
 
@@ -209,4 +234,3 @@ class ToolTestTest extends BiopetTest {
   }
 
 }
-
