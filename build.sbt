@@ -2,7 +2,7 @@ organization := "com.github.biopet"
 organizationName := "Biopet"
 name := "tool-test-utils"
 
-biopetUrlName := "tool-test-utildep s"
+biopetUrlName := "tool-test-utils"
 
 startYear := Some(2014)
 
