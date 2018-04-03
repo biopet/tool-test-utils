@@ -17,6 +17,8 @@ developers += Developer(id = "rhpvorderman",
                         email = "r.h.p.vorderman@lumc.nl",
                         url = url("https://github.com/rhpvorderman"))
 
+crossScalaVersions := Seq("2.11.12", "2.12.5")
+
 scalaVersion := "2.11.12"
 
 libraryDependencies += "com.github.biopet" %% "test-utils" % "0.3"
